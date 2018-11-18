@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SongRepository")
+ * @Serializer\ExclusionPolicy("all")
  */
 class Song
 {
@@ -18,8 +20,15 @@ class Song
 
     /**
      * @ORM\Column(type="string", length=1024)
+     * @Serializer\Expose
      */
     private $title;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Serializer\Expose
+     */
+    private $length;
 
     /**
      * @ORM\ManyToOne(targetEntity="Album", inversedBy="songs")
@@ -32,11 +41,6 @@ class Song
      * @ORM\JoinColumn(name="artist_id", referencedColumnName="id")
      */
     private $artist;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $length;
 
     /**
      * @return int|null

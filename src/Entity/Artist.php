@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation as Serializer;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArtistRepository")
+ * @Serializer\ExclusionPolicy("all")
  */
 class Artist
 {
@@ -19,16 +21,19 @@ class Artist
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Expose
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=6, unique=true, nullable=false)
+     * @Serializer\Expose
      */
     private $token;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Album", mappedBy="artist")
+     * @Serializer\Expose
      */
     private $albums;
 
