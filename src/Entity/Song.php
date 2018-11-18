@@ -26,7 +26,6 @@ class Song
 
     /**
      * @ORM\Column(type="integer")
-     * @Serializer\Expose
      */
     private $length;
 
@@ -75,6 +74,16 @@ class Song
     public function getLength(): ?int
     {
         return $this->length;
+    }
+
+    /**
+     * @return string
+     * @Serializer\VirtualProperty(name="length", options={@Serializer\SerializedName("length")})
+     * @Serializer\Expose
+     */
+    public function getLengthForHumans(): string
+    {
+        return gmdate("i:s", $this->length);
     }
 
     /**
