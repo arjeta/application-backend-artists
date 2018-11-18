@@ -119,4 +119,19 @@ class Song
         $this->artist = $artist;
         return $this;
     }
+
+    /**
+     * Convert from human format to integer
+     * @param string $string
+     * @return bool|int
+     */
+    public static function humanToSeconds(string $string)
+    {
+        if(!$string){
+            return false;
+        }
+        $array = explode(':', $string);
+        $length = $array[0]*60 + $array[1];
+        return intval($length);
+    }
 }

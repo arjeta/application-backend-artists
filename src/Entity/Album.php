@@ -138,4 +138,22 @@ class Album
         $this->token = $token;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getArtist()
+    {
+        return $this->artist;
+    }
+
+    /**
+     * @param mixed $artist
+     * @return $this
+     */
+    public function setArtist($artist): self
+    {
+        $this->artist = $artist;
+        return $this;
+    }
 }
